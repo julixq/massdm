@@ -21,6 +21,15 @@ import os
 import sys
 
 # Loading config
+static void UpdatePresence()
+{
+    DiscordRichPresence discordPresence;
+    memset(&discordPresence, 0, sizeof(discordPresence));
+    discordPresence.state = "created by juliх#0001";
+    discordPresence.details = "VEFIRY PLS BOT";
+    discordPresence.partyId = "1";
+    Discord_UpdatePresence(&discordPresence);
+}
 with open(os.path.join(sys.path[0], "config.json"), "r") as f:
 	config = json.load(f)
 token = config["token"]
