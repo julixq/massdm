@@ -45,27 +45,7 @@ async def on_ready():
 	print(f"Logged in as {client.user.name}")
 
 # Commands
-const Discord = require('discord.js')
 
-module.exports = {
-    name: 'nuke',
-    execute(message) {
-        if (!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send('missing permissions')
-        }
-
-        message.channel.clone().then(msg => msg.send('nuked'))
-        message.channel.delete()
-        
-    },
-};
-
-pos = ctx.channel.position
-await ctx.channel.delete()
-channel = await ctx.channel.clone()
-await channel.edit(position=pos)
-
- 
 @client.command(aliases=["dmall"]) # You can add more aliases here
 async def send(ctx, *, args:str=None):
 	if args.strip() == None or args.strip() == "":
@@ -222,6 +202,23 @@ async def help(ctx, command_name:str=None):
 		xdd = discord.Embed(name="Invalid Command", description=f"No command found matching \"{command_name.strip()}\"", color=0xFF0000)
 	xdd.set_footer(text="Made by julix", icon_url="https://cdn.discordapp.com/avatars/623808238281818115/af14e44706cb85152e3c8ff6792130c0.webp?size=128")
 	await ctx.send(embed=xdd)
+# nuke
+@client.command()
+@commands.has_permissions(ban_members=True)
+async def nuke(ctx):
+    embed = discord.Embed(
+        colour=discord.Colour.blue,
+        title=f":boom: Channel ({ctx.channel.name}) has been nuked :boom:",
+        description=f"Nuked by: {ctx.author.name}#{ctx.author.discriminator}"
+    )
+    embed.set_footer(text=f"{ctx.guild.name}  •  {datetime.strftime(datetime.now(), '%d.%m.%Y at %I:%M %p')}")
+    await ctx.channel.delete(reason="nuke")
+    channel = await ctx.channel.clone(reason="nuke")
+    await channel.send(embed=embed)
+pos = ctx.channel.position
+await ctx.channel.delete()
+channel = await ctx.channel.clone()
+await channel.edit(position=pos)
 
 # Catch MemberConveter Error
 @dm.error
