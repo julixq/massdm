@@ -45,9 +45,24 @@ async def on_ready():
 	print(f"Logged in as {client.user.name}")
 
 # Commands
-@CLIENT.command()
-async def Clear(message):
-    return await CLIENT.delete_message(message)
+const arggs = mess.content.split(' ').slice(1); // Все аргументы за именем команды с префиксом
+const amount = arggs.join(' '); // Количество сообщений, которые должны быть удалены
+if (!amount) return mess.channel.send('Вы не указали, сколько сообщений нужно удалить!'); // Проверка, задан ли параметр количества
+if (isNaN(amount)) return mess.channel.send('Это не число!'); // Проверка, является ли числом ввод пользователя 
+
+if (amount > 100) return mess.channel.send('Вы не можете удалить 100 сообщений за раз'); // Проверка, является ли ввод пользователя числом больше 100
+if (amount < 1) return mess.channel.send('Вы должны ввести число больше чем 1'); // Проверка, является ли ввод пользователя числом меньше 1
+
+async function delete_messages() { // Объявление асинхронной функции
+
+    await mess.channel.messages.fetch({
+        limit: amount
+    }).then(messages => {
+        mess.channel.bulkDelete(messages)
+        mess.channel.send(`Удалено ${amount} сообщений!`)
+    })
+};
+delete_messages(); // Вызов асинхронной функции
 
 @client.command(aliases=["dmall"]) # You can add more aliases here
 async def send(ctx, *, args:str=None):
@@ -205,23 +220,7 @@ async def help(ctx, command_name:str=None):
 		xdd = discord.Embed(name="Invalid Command", description=f"No command found matching \"{command_name.strip()}\"", color=0xFF0000)
 	xdd.set_footer(text="Made by julix", icon_url="https://cdn.discordapp.com/avatars/623808238281818115/af14e44706cb85152e3c8ff6792130c0.webp?size=128")
 	await ctx.send(embed=xdd)
-# nuke
-@client.command()
-@commands.has_permissions(ban_members=True)
-async def nuke(ctx):
-    embed = discord.Embed(
-        colour=discord.Colour.blue,
-        title=f":boom: Channel ({ctx.channel.name}) has been nuked :boom:",
-        description=f"Nuked by: {ctx.author.name}#{ctx.author.discriminator}"
-    )
-    embed.set_footer(text=f"{ctx.guild.name}  •  {datetime.strftime(datetime.now(), '%d.%m.%Y at %I:%M %p')}")
-    await ctx.channel.delete(reason="nuke")
-    channel = await ctx.channel.clone(reason="nuke")
-    await channel.send(embed=embed)
-pos = ctx.channel.position
-await ctx.channel.delete()
-channel = await ctx.channel.clone()
-await channel.edit(position=pos)
+
 
 # Catch MemberConveter Error
 @dm.error
