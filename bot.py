@@ -144,7 +144,7 @@ async def help(ctx, command_name:str=None):
 		xd.add_field(name="Send", value=f"DMs all members with a delay\nUsage : `{client.command_prefix}send <message>`", inline=False)
 		xd.add_field(name="DM", value=f"DMs specific member\nUsage : `{client.command_prefix}dm <user> <message>`", inline=False)
 		xd.add_field(name="Latency", value=f"Displays the latency/ping of the bot in ms\nUsage : `{client.command_prefix}latency`", inline=False)
-                xd.add_field(name="Clear", value=f"DMs specific member\nUsage : `{client.command_prefix}clear <amount>`", inline=False)
+                xd.add_field(name="Clear", value=f"Clear all messeage : `{client.command_prefix}clear <amount>`", inline=False)
 		xd.add_field(name="Help", value=f"Shows all available commands\nUsage : `{client.command_prefix}help`", inline=False)
 		xd.add_field(value=f"You can do `{client.command_prefix}help <command-name>` for more info on command", name="More Info", inline=False)
 		xd.set_footer(text="Made by julix >3", icon_url="")
