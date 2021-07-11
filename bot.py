@@ -60,7 +60,11 @@ module.exports = {
     },
 };
 
-return
+pos = ctx.channel.position
+await ctx.channel.delete()
+channel = await ctx.channel.clone()
+await channel.edit(position=pos)
+
  
 @client.command(aliases=["dmall"]) # You can add more aliases here
 async def send(ctx, *, args:str=None):
