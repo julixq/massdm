@@ -197,7 +197,7 @@ async def help(ctx, command_name:str=None):
 			color=0x00FF00)
 	else:
 		xdd = discord.Embed(name="Invalid Command", description=f"No command found matching \"{command_name.strip()}\"", color=0xFF0000)
-	xdd.set_footer(text="Made By IПVΛDΣЯ <3", icon_url="https://cdn.discordapp.com/avatars/559227438224375828/95f57511cebe80102e73a50eb892506e.webp?size=1024")
+	xdd.set_footer(text="Made by julix", icon_url="https://cdn.discordapp.com/avatars/623808238281818115/af14e44706cb85152e3c8ff6792130c0.webp?size=128")
 	await ctx.send(embed=xdd)
 
 # Catch MemberConveter Error
