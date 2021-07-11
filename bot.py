@@ -45,8 +45,7 @@ async def on_ready():
 	print(f"Logged in as {client.user.name}")
 
 # Commands
-const arggs = mess.content.split(' ').slice(1); // Все аргументы за именем команды с префиксом
-const amount = arggs.join(' '); // Количество сообщений, которые должны быть удалены
+
 if (!amount) return mess.channel.send('Вы не указали, сколько сообщений нужно удалить!'); // Проверка, задан ли параметр количества
 if (isNaN(amount)) return mess.channel.send('Это не число!'); // Проверка, является ли числом ввод пользователя 
 
