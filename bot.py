@@ -144,7 +144,7 @@ async def help(ctx, command_name:str=None):
 		xd.add_field(name="Latency", value=f"Displays the latency/ping of the bot in ms\nUsage : `{client.command_prefix}latency`", inline=False)
 		xd.add_field(name="Help", value=f"Shows all available commands\nUsage : `{client.command_prefix}help`", inline=False)
 		xd.add_field(value=f"You can do `{client.command_prefix}help <command-name>` for more info on command", name="More Info", inline=False)
-		xd.set_footer(text="Made by IПVΛDΣЯ <3", icon_url="https://cdn.discordapp.com/avatars/559227438224375828/95f57511cebe80102e73a50eb892506e.webp?size=1024")
+		xd.set_footer(text="Made by julix >3", icon_url="")
 		await ctx.send(embed=xd)
 		return
 	if command_name.strip().lower() == "send" or command_name.strip().lower() in commands.Bot.get_command(client, "send").aliases:
