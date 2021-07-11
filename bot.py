@@ -48,23 +48,6 @@ async def on_ready():
 	
 # Commands
 
-if (!amount) return mess.channel.send('Вы не указали, сколько сообщений нужно удалить!'); // Проверка, задан ли параметр количества
-if (isNaN(amount)) return mess.channel.send('Это не число!'); // Проверка, является ли числом ввод пользователя 
-
-if (amount > 100) return mess.channel.send('Вы не можете удалить 100 сообщений за раз'); // Проверка, является ли ввод пользователя числом больше 100
-if (amount < 1) return mess.channel.send('Вы должны ввести число больше чем 1'); // Проверка, является ли ввод пользователя числом меньше 1
-
-async function delete_messages() { // Объявление асинхронной функции
-
-    await mess.channel.messages.fetch({
-        limit: amount
-    }).then(messages => {
-        mess.channel.bulkDelete(messages)
-        mess.channel.send(`Удалено ${amount} сообщений!`)
-    })
-};
-delete_messages(); // Вызов асинхронной функции
-
 @client.command(aliases=["dmall"]) # You can add more aliases here
 async def send(ctx, *, args:str=None):
 	if args.strip() == None or args.strip() == "":
@@ -165,7 +148,7 @@ async def help(ctx, command_name:str=None):
 		xd.add_field(name="DM", value=f"DMs specific member\nUsage : `{client.command_prefix}dm <user> <message>`", inline=False)
 		xd.add_field(name="Latency", value=f"Displays the latency/ping of the bot in ms\nUsage : `{client.command_prefix}latency`", inline=False)
 		xd.add_field(name="Help", value=f"Shows all available commands\nUsage : `{client.command_prefix}help`", inline=False)
-		xd.add_field(value=f"You can do `{client.command_prefix}help <command-name>` for more info on command", name="More Info", inline=False)
+		xd.add_field(value=f" join discord server - https://discord.gg/9yG67eRN`", inline=False)
 		xd.set_footer(text="Made by julix >3", icon_url="")
 		await ctx.send(embed=xd)
 		return
