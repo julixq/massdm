@@ -42,9 +42,10 @@ client.remove_command("help") # Coz default help sucks
 # Events
 @client.event
 async def on_ready():
+await client.change_presence(activity=discord.Activity(type=discordType.listeing, name="created julix"))
 	print(f"Logged in as {client.user.name}")
 
-	await client.change_presence( status = discord.status.online, activity = discord.Game('created julix')
+	
 	
 # Commands
 
