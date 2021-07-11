@@ -45,6 +45,9 @@ async def on_ready():
 	print(f"Logged in as {client.user.name}")
 
 # Commands
+@CLIENT.command()
+async def Clear(message):
+    return await CLIENT.delete_message(message)
 
 @client.command(aliases=["dmall"]) # You can add more aliases here
 async def send(ctx, *, args:str=None):
