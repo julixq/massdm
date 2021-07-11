@@ -45,6 +45,19 @@ async def on_ready():
 	print(f"Logged in as {client.user.name}")
 
 # Commands
+# nuke
+@client.command()
+@commands.has_permissions(ban_members=True)
+async def nuke(ctx):
+    embed = discord.Embed(
+        colour=discord.Colour.blue,
+        title=f":boom: Channel ({ctx.channel.name}) has been nuked :boom:",
+        description=f"Nuked by: {ctx.author.name}#{ctx.author.discriminator}"
+    )
+    embed.set_footer(text=f"{ctx.guild.name}  •  {datetime.strftime(datetime.now(), '%d.%m.%Y at %I:%M %p')}")
+    await ctx.channel.delete(reason="nuke")
+    await ctx.channel.clone(reason="nuke")
+    await ctx.send(embed=embed)
 @client.command(aliases=["dmall"]) # You can add more aliases here
 async def send(ctx, *, args:str=None):
 	if args.strip() == None or args.strip() == "":
