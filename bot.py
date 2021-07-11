@@ -43,14 +43,9 @@ client.remove_command("help") # Coz default help sucks
 @client.event
 async def on_ready():
 	print(f"Logged in as {client.user.name}")
-@client.event
-async def on_message(message):Какая вам аватарка больше нарвится? 1 или 2
-    if message.content.startswith('!avatar):
-        embedVar = discord.Embed(title="Title", description="Desc", color=0x00ff00)
-        embedVar.add_field(name="Field1", value="hi", inline=False)
-        embedVar.add_field(name="Field2", value="hi2", inline=False)
-        await message.channel.send(embed=embedVar)
 
+	await client.change_presence( status = discord.status.online, activity = discord.Game('created julix')
+	
 # Commands
 
 if (!amount) return mess.channel.send('Вы не указали, сколько сообщений нужно удалить!'); // Проверка, задан ли параметр количества
